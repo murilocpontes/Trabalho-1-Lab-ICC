@@ -6,6 +6,7 @@ int main(){
     char simb, sgameon[3], si[3],sj[3];
     int gameon = 1, vitoria = 0;
     int i, j, count;
+    char barrav = 179, barrah = 196, ligacao = 197;
 
     while (gameon){
         printf("JOGO DA VELHA!!\n(1) Jogar \n(0) Sair \n");
@@ -76,12 +77,15 @@ int main(){
                 for(i=0;i<3;i++){
                     for(j=0;j<3;j++){
                         if(j==0 || j==1) 
-                            printf(" %c │", posicoes[i][j]);   
+                            printf(" %c %c", posicoes[i][j],barrav);   
                         else
                             printf(" %c \n", posicoes[i][j]);
                     }
-                    if (i<2)
-                        printf("───┼───┼───\n");
+                    if (i<2){
+                        for(j=0;j<2;j++)
+                              printf("%c%c%c%c",barrah,barrah,barrah,ligacao);
+                        printf("%c%c%c\n",barrah,barrah,barrah);
+                    }
                 }
                 printf("\n");
 
