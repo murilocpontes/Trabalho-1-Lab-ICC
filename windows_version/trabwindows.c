@@ -8,11 +8,13 @@ int main(){
     int i, j, count;
     char barrav = 179, barrah = 196, ligacao = 197;
 
+    
     while (gameon){
+        //menu do jogo
         printf("JOGO DA VELHA!!\n(1) Jogar \n(0) Sair \n");
         fflush(stdin);
         fgets(sgameon, 3, stdin);
-        
+
          if (sgameon[0] != '0' && sgameon[0] != '1'){
             system("cls");
             printf("Erro -> Simbolo incorreto\n");
@@ -23,12 +25,13 @@ int main(){
 
         if (gameon==0)
             break;
-        
-        while (1){ 
+
+        //escolha do simbolo e verificação
+        while (1){
             printf ("Escolha seu simbolo (X ou O):\n");
             fflush(stdin);
             simb = getchar();
-            getchar(); // pegar o \n 
+            getchar(); // pegar o \n
             if(simb == 'x' || simb == 'X'){
                 simb = 'X';
                 system("cls");
@@ -41,6 +44,7 @@ int main(){
             }
                 printf("Erro -> Simbolo incorreto\n");
         }
+
         //inicializa a matriz com ' ' em todas as posicoes
         for(i=0;i<3;i++){
             for (j=0;j<3;j++){
@@ -48,7 +52,8 @@ int main(){
             }
         }
 
-        for(count=1;count<10;count++){ //contador de rodadas
+        //escolha da posição
+        for(count=1;count<10;count++){//contador de rodadas
             printf("Rodada %d. Vez de %c.\n",count,simb);
             printf("Digite a posicao desejada:\n (1,2,3)Linha\n");
             fgets(si,3,stdin);
@@ -56,6 +61,7 @@ int main(){
             printf("(1,2,3)Coluna\n");
             fgets(sj,3,stdin);
 
+        //verifica se posição está fora da matriz
             if((si[0]!='1' && si[0]!='2' && si[0]!='3') || (sj[0]!='1' && sj[0]!='2' && sj[0]!='3')){
                 printf("Erro -> Simbolo invalido!\n");
                 count--;
@@ -65,6 +71,7 @@ int main(){
             i = atoi(si) - 1;
             j = atoi(sj) - 1;
 
+        //verifica se posição já está preenchida
             if(posicoes[i][j] == 'X' || posicoes[i][j] == 'O'){
                 printf("Erro -> Posicao ja preenchida!\n");
                 count--;
@@ -73,23 +80,23 @@ int main(){
             else{
                 posicoes[i][j] = simb;
                 system("cls");
-                //printa o tabuleiro na tela
+        //printa o tabuleiro na tela
                 for(i=0;i<3;i++){
                     for(j=0;j<3;j++){
-                        if(j==0 || j==1) 
-                            printf(" %c %c", posicoes[i][j],barrav);   
+                        if(j==0 || j==1)
+                            printf(" %c %c", posicoes[i][j],barrav);
                         else
                             printf(" %c \n", posicoes[i][j]);
                     }
                     if (i<2){
                         for(j=0;j<2;j++)
-                              printf("%c%c%c%c",barrah,barrah,barrah,ligacao);
+                   		printf("%c%c%c%c",barrah,barrah,barrah,ligacao);
                         printf("%c%c%c\n",barrah,barrah,barrah);
                     }
                 }
                 printf("\n");
 
-                //antes da quinta jogada, n tem como ganhar
+        //antes da quinta jogada, n tem como ganhar
                 if(count < 5) {
                     if(simb == 'X')
                         simb = 'O';
@@ -97,36 +104,39 @@ int main(){
                         simb = 'X';
                     continue;
                 }
-
+                
+        //verifica vitória na linha
                 for (i=0; i<3; i++){
                     if ((posicoes[i][0] == posicoes[i][1]) && (posicoes[i][0]==posicoes[i][2])&&((posicoes[i][0] == 'X')||(posicoes[i][0] == 'O')))
                         vitoria =1;
-                    
+                        
+        //verifica vitória na coluna
                 }
                 for (j=0; j<3; j++){
                     if ((posicoes[0][j] == posicoes[1][j]) && (posicoes[0][j]==posicoes[2][j]) && ((posicoes[0][j] == 'X')||(posicoes[0][j] == 'O')))
                         vitoria = 1;
-                    
+        //verifica vitória na diagonal
                 }
                 if(((posicoes[0][0] == posicoes[1][1] && posicoes[0][0] == posicoes[2][2]) || (posicoes[2][0] == posicoes[1][1] && posicoes[2][0] == posicoes[0][2]))
                 &&((posicoes[1][1] == 'X')||(posicoes[1][1] == 'O')))
                     vitoria = 1;
-                
+
                 if(vitoria==1)
                     break;
 
 
-                //troca de time no fim do turno
+        //troca de time no fim do turno
                 if(simb == 'X')
                     simb = 'O';
                 else
                     simb = 'X';
             }
         }
+        //indica quem ganhou e quem perdeu ou se deu velha
             if(vitoria == 1){
                 if(simb == 'X'){
                    printf("\nO JOGADOR X VENCEU!\n");
-                   printf("O JOGADOR O PERDEU!\n\n"); 
+                   printf("O JOGADOR O PERDEU!\n\n");
                 }
                 else{
                     printf("\nO JOGADOR O VENCEU!\n");
@@ -136,7 +146,7 @@ int main(){
 
             else
                 printf("DEU VELHA!\n");
-        
+
     }
-    return 0;
+    return 0;
 }
