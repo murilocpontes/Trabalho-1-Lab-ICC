@@ -49,7 +49,7 @@ int main(){
 
         for(count=1;count<10;count++){ //contador de rodadas
             printf("Rodada %d. Vez de %c.\n",count,simb);
-            printf("Digite a posição desejada:\n (1,2,3)Linha\n");
+            printf("Digite a posicao desejada:\n (1,2,3)Linha\n");
             fgets(si,3,stdin);
 
             printf("(1,2,3)Coluna\n");
