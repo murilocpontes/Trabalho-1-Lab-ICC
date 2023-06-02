@@ -23,6 +23,13 @@ int main(){
         if (gameon==0)
             break;
         
+         //inicializa a matriz com ' ' em todas as posicoes
+        for(i=0;i<3;i++){
+            for (j=0;j<3;j++){
+                posicoes[i][j] = 32;
+            }
+        }
+        
         while (1){ 
             printf ("Escolha seu simbolo (X ou O):\n");
             fflush(stdin);
@@ -39,12 +46,6 @@ int main(){
                 break;
             }
                 printf("Erro -> Simbolo incorreto\n");
-        }
-        //inicializa a matriz com ' ' em todas as posicoes
-        for(i=0;i<3;i++){
-            for (j=0;j<3;j++){
-                posicoes[i][j] = 32;
-            }
         }
 
         for(count=1;count<10;count++){ //contador de rodadas
