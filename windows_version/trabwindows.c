@@ -25,6 +25,13 @@ int main(){
 
         if (gameon==0)
             break;
+            
+        //inicializa a matriz com ' ' em todas as posicoes
+        for(i=0;i<3;i++){
+            for (j=0;j<3;j++){
+                posicoes[i][j] = 32;
+            }
+        }
 
         //escolha do simbolo e verificação
         while (1){
@@ -43,13 +50,6 @@ int main(){
                 break;
             }
                 printf("Erro -> Simbolo incorreto\n");
-        }
-
-        //inicializa a matriz com ' ' em todas as posicoes
-        for(i=0;i<3;i++){
-            for (j=0;j<3;j++){
-                posicoes[i][j] = 32;
-            }
         }
 
         //escolha da posição
